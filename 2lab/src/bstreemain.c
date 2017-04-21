@@ -32,12 +32,12 @@ int main()
     }
 	fclose(book);
 	
-	printf("%s", words[n / 2 + 1]);
+//	printf("%s", words[n / 2 + 1]);
 	
 	tree = bstree_create(words[0], 0); //создает корень дерева
 	
-	for (i = 1; i < 200000; i++) {
-  		bstree_add(tree, words[i], i);
+	for (i = 5000; i < 50000; i += 5000) {
+  		bstree_add(tree, words[0], 0);
 		//if (i % 10000 == 0) {
 			//for (j = 0; j < i; j++) {
 				w = getrand(0, i - 1);
@@ -45,11 +45,11 @@ int main()
 				time = wtime();
 				node = bstree_lookup(tree, w);
 				time = wtime() - time;
-				fprintf("n = %d; Elapsed time: %.6f sec.\n", i - 1, alltime);
+				fprintf(time, "n = %d; Elapsed time: %.6f sec.\n", i - 1, alltime);
 				alltime = alltime + time;
   			//}
   		//alltime = alltime / i;
-  		printf("n = %d; Elapsed time: %.6f sec.\n", i - 1, alltime);
+  		//printf("n = %d; Elapsed time: %.6f sec.\n", i - 1, alltime);
   		//}
 	}
 	
