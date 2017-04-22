@@ -45,37 +45,37 @@ int main()
 	tree = bstree_create(words[0], 0);	//создает корень дерева
 
 	hashtab_init(hashtab);	//создаём основу для таблицы
-	
-	for (i = 1; i < n; i++) {	//эксперимент 2 для бинарного дерева
+
+	for (i = 1; i < n; i++) {	//эксперимент 1 для бинарного дерева
+  		bstree_add(tree, words[i], i);
 		if (i % 5000 == 0) {
 			//for (j = 0; j < i; j++) {
-				FILE *timebstree2 = fopen("Experiment2bstree.txt", "w");
-				bstree_add(tree, words[i], i);
+				word = getrand(0, i);
+				FILE *timebstree1 = fopen("Experiment1bstree.txt", "w");
+				time = wtime();
+				node = bstree_lookup(tree, word);
 				time = wtime() - time;
 				alltime += time;
 				fprintf("n = %d; Elapsed time: %.6f sec.\n", i, alltime);
-				fclose(timebstree2);
-  		} else {
-  			time = wtime();
-  			bstree_add(tree, words[i], i);
+				fclose(timebstree1);
   		}
   		//alltime = alltime / i;
   		//printf("n = %d; Elapsed time: %.6f sec.\n", i, alltime);
   		//}
 	}
 
-	for (i = 1; i < n; i++) {	//эксперимент 2 для хэш-таблицы
+	for (i = 1; i < n; i++) {	//эксперимент 1 для хэш-таблицы
+  		hashtab_add(hashtab, words[i], i);
 		if (i % 5000 == 0) {
 			//for (j = 0; j < i; j++) {
-				FILE *timehashtab2 = fopen("Experiment2hashtab.txt", "w");
-				hashtab_add(hashtab, words[i], i);
+				word = getrand(0, i);
+				FILE *timehashtab1 = fopen("Experiment1hashtab.txt", "w");
+				time = wtime();
+				node = hashtab_lookup(hashtab, word);
 				time = wtime() - time;
 				alltime += time;
 				fprintf("n = %d; Elapsed time: %.6f sec.\n", i, alltime);
-				fclose(timehashtab2);
-  		} else {
-  			time = wtime();
-  			hashtab_add(hashtab, words[i], i);
+				fclose(timehashtab1);
   		}
   		//alltime = alltime / i;
   		//printf("n = %d; Elapsed time: %.6f sec.\n", i, alltime);

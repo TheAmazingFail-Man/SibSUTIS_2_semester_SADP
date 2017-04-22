@@ -24,6 +24,19 @@ void hashtab_init(struct listnode **hashtab) {
 	}
 }
 
+unsigned int hashtab_hash_xor(char *key)
+{
+    unsigned char *p = key;
+    unsigned h = 0;
+    int i;
+    
+    for (i=0; i < 25 ; i++) {
+    	h^=p[i];
+    }
+
+    return h;
+}
+
 void hashtab_add(struct listnode **hashtab, char *key, int value) {
 	struct listnode *node;
 	int index = hashtab_hash(key);
