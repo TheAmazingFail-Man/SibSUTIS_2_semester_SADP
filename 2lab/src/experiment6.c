@@ -26,7 +26,7 @@ int main()
 	struct listnode *node;
 	//struct listnode *hashtab[HASHTAB_SIZE];
 	FILE *book = fopen("book.txt", "r");
-	while (!feof(book)) {	//считает количество слов в книге и ищет самое длинное слово
+	while (!feof(book)) {
 		if (fgetc(book) == '\n') {
 			n++;
 			max = m;
@@ -37,16 +37,16 @@ int main()
 	}
 	//words = (char*)malloc(n * max * sizeof(char));
 	char words[n][max];
-	for(i = 0; i < n; i++) {	//заполняет массив словами из книги
+	for(i = 0; i < n; i++) {
 		fgets(words[n], n, book);
     }
 	fclose(book);
 	
-	tree = bstree_create(words[0], 0);	//создает корень дерева
+	tree = bstree_create(words[0], 0);
 
-	hashtab_init(hashtab);	//создаём основу для таблицы
+	hashtab_init(hashtab);
 
-	for (i = 1; i < n; i++) {	//эксперимент 1 для бинарного дерева
+	for (i = 1; i < n; i++) {
   		bstree_add(tree, words[i], i);
 		if (i % 5000 == 0) {
 			//for (j = 0; j < i; j++) {
@@ -64,7 +64,7 @@ int main()
   		//}
 	}
 
-	for (i = 1; i < n; i++) {	//эксперимент 1 для хэш-таблицы
+	for (i = 1; i < n; i++) {
   		hashtab_add(hashtab, words[i], i);
 		if (i % 5000 == 0) {
 			//for (j = 0; j < i; j++) {
